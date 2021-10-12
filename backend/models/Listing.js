@@ -111,7 +111,8 @@ class Listing {
 
   /** Given a listing id, return data about listing.
    *
-   * Returns { id, title, description, location, price, username, image }
+   * Returns { id, title, description, location, price, host, username, image }
+   *    where host is { username, firstName, lastName}
    *
    * Throws NotFoundError if not found.
    **/
@@ -134,17 +135,16 @@ class Listing {
 
     if (!listing) throw new NotFoundError(`No listing: ${id}`);
 
-    // const companiesRes = await db.query(
-    //   `SELECT handle,
-    //                 name,
-    //                 description,
-    //                 num_employees AS "numEmployees",
-    //                 logo_url AS "logoUrl"
-    //          FROM companies
-    //          WHERE handle = $1`, [listing.companyHandle]);
+    const userRes = await db.query(
+      `SELECT username, 
+                first_name AS "firstName", 
+                last_name AS "lastName"
+           FROM users
+           WHERE username = $1`,
+      [listing.username]
+    );
 
-    // delete listing.companyHandle;
-    // listing.company = companiesRes.rows[0];
+    listing.host = userRes.rows[0];
 
     return listing;
   }
