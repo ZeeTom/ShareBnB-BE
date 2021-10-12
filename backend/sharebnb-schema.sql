@@ -13,7 +13,7 @@ CREATE TABLE listings (
     description TEXT NOT NULL,
     location VARCHAR(25),
     price INTEGER CHECK (price > 0),
-    image TEXT DEFAULT 'https://sharebnb-photos-grant.s3.amazonaws.com/sharebnb-photos/listing-picture1.jpg',
+    image TEXT DEFAULT 'https://sharebnb-listing-photos.s3.us-west-1.amazonaws.com/default-listing.jpg',
     username VARCHAR(25) NOT NULL
       REFERENCES users ON DELETE CASCADE
 ); 
