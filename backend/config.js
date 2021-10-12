@@ -12,8 +12,8 @@ const PORT = +process.env.PORT || 3001;
 // Use dev database, testing database, or via env var, production database
 function getDatabaseUri() {
   return process.env.NODE_ENV === "test"
-    ? "sharebnb_test"
-    : process.env.DATABASE_URL || "sharebnb";
+    ? "sharebnb_lz_test"
+    : process.env.DATABASE_URL || "sharebnb_lz";
 }
 
 // Speed up bcrypt during tests, since the algorithm safety isn't being tested
