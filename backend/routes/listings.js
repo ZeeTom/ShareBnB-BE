@@ -25,7 +25,7 @@ const router = new express.Router();
 AWS.config.update({
   // accessKeyId: grant,
   // secretAccessKey: zach,
-  region: 'us-west-1'
+  region: "us-west-1",
 });
 
 const s3 = new AWS.S3();
@@ -37,8 +37,6 @@ async function uploadFile(file) {
     Body: file.buffer,
     ContentType: file.mimetype,
   };
-
-  console.log("PARAMS IS", params);
 
   await s3
     .upload(params, function (err, data) {
@@ -55,7 +53,6 @@ async function uploadFile(file) {
 
 router.post("/", upload.single("image"), async function (req, res, next) {
   const formData = { ...req.body, price: +req.body.price };
-  console.log("THIS IS FORM DATA", formData);
   const validator = jsonschema.validate(formData, listingNewSchema);
   if (!validator.valid) {
     const errs = validator.errors.map((e) => e.stack);
