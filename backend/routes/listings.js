@@ -13,7 +13,7 @@ const Listing = require("../models/Listing");
 const listingNewSchema = require("../schemas/listingNew.json");
 const listingUpdateSchema = require("../schemas/listingUpdate.json");
 const listingSearchSchema = require("../schemas/listingSearch.json");
-const { grant, zach } = require("../projectsecrets");
+// const { grant, zach } = require("../projectsecrets");
 const AWS = require("aws-sdk");
 const { v4 } = require("uuid");
 
@@ -23,8 +23,9 @@ const upload = multer();
 const router = new express.Router();
 
 AWS.config.update({
-  accessKeyId: grant,
-  secretAccessKey: zach,
+  // accessKeyId: grant,
+  // secretAccessKey: zach,
+  region: 'us-west-1'
 });
 
 const s3 = new AWS.S3();
