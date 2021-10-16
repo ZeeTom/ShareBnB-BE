@@ -15,12 +15,12 @@ INSERT INTO listings (title,
                       location,
                       price,
                       username)
-VALUES ('Fairytale Getaway', 'The house of your dreams', 'New Mexico', 1000, 'u1'),
-       ('The Swamp', 'Beware the ogre', 'Far Far Away', 150, 'u2'),
-       ('Castle On The Hill', 'Like out of the song', 'Ireland', 750, 'u2');
+VALUES ('Fairytale Getaway', 'The house of your dreams', 'New Mexico', 1000, 'lawnknee'),
+       ('The Swamp', 'Beware the ogre', 'Far Far Away', 150, 'zeetom'),
+       ('Castle On The Hill', 'Like out of the song', 'Ireland', 750, 'zeetom');
 
 INSERT INTO messages (text,
                       to_user,
                       from_user)
-VALUES ('Hello Zach', 'u2', 'u1'),
-       ('Hello Grant', 'u1', 'u2');
+VALUES ('Hello Zach', 'zeetom', 'lawnknee'),
+       ('Hello Loni', 'lawnknee', 'zeetom');
