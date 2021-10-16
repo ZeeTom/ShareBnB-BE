@@ -23,19 +23,20 @@ const upload = multer();
 const router = new express.Router();
 
 AWS.config.update({
-  // accessKeyId: grant,
-  // secretAccessKey: zach,
   region: "us-west-1",
 });
 
-const s3 = new AWS.S3();
+// const s3 = new AWS.S3();
+var s3 = new AWS.S3({ apiVersion: "2006-03-01" });
 
 async function uploadFile(file) {
+  console.log("start of function", file);
   const params = {
-    Bucket: "sharebnb-listing-photos-zach",
+    Bucket: "sharebnb-listing-photos",
     Key: v4(),
     Body: file.buffer,
     ContentType: file.mimetype,
+    ContentDisposition: "inline",
   };
 
   await s3
@@ -48,10 +49,12 @@ async function uploadFile(file) {
     })
     .promise();
 
-  return `https://sharebnb-listing-photos-zach.s3.amazonaws.com/${params.Key}`;
+  return `https://sharebnb-listing-photos.s3.amazonaws.com/${params.Key}`;
 }
 
 router.post("/", upload.single("image"), async function (req, res, next) {
+  console.log(req.body, "req body");
+  console.log(req.file, "req file");
   const formData = { ...req.body, price: +req.body.price };
   const validator = jsonschema.validate(formData, listingNewSchema);
   if (!validator.valid) {
@@ -60,6 +63,7 @@ router.post("/", upload.single("image"), async function (req, res, next) {
   }
 
   let url = await uploadFile(req.file);
+  console.log(url, "url is");
   formData.image = url || null;
 
   const newListing = await Listing.create(formData, "u1");
