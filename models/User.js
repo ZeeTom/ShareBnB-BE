@@ -412,7 +412,7 @@ class User {
     const response = await db.query(
       `INSERT INTO messages (from_user, to_user, text)
            VALUES ($1, $2, $3)
-           RETURNING text, sent_time AS "sentTime"`,
+           RETURNING id, text, sent_time AS "sentTime", to_user AS "toUser", from_user AS "fromUser"`,
       [username, otherUser, text]
     );
 
@@ -455,7 +455,8 @@ class User {
     if (!user2) throw new NotFoundError(`No username: ${otherUser}`);
 
     const messageResp = await db.query(
-      `SELECT text,
+      `SELECT id,
+              text,
               sent_time AS "sentTime",
               to_user AS "toUser",
               from_user AS "fromUser"
