@@ -1,13 +1,13 @@
 INSERT INTO users (username, password, first_name, last_name, email)
-VALUES ('u1',
+VALUES ('lawnknee',
         '$2b$12$AZH7virni5jlTTiGgEg4zu3lSvAw68qVEfSIOjJ3RqtbJbdW/Oi5q',
-        'Test',
-        'User',
-        'grant@grant.com'),
-       ('u2',
+        'Loni',
+        'Kuang',
+        'loni@loni.com'),
+       ('zeetom',
         '$2b$12$AZH7virni5jlTTiGgEg4zu3lSvAw68qVEfSIOjJ3RqtbJbdW/Oi5q',
-        'Test',
-        'User2',
+        'Zach',
+        'Thomas',
         'zach@zach.com');
 
 INSERT INTO listings (title,
