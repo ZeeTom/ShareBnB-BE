@@ -12,10 +12,14 @@ class Listing {
    * TODO: add docstring
    */
 
-  static async create(
-    { title, description, location, price, image },
-    username
-  ) {
+  static async create({
+    title,
+    description,
+    location,
+    price,
+    image,
+    username,
+  }) {
     const result = await db.query(
       `INSERT INTO listings
           (title, description, location, price, username, image)

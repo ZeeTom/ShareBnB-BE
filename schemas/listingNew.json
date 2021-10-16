@@ -23,8 +23,11 @@
     "image": {
       "type": "string",
       "format": "uri"
+    },
+    "username": {
+      "type": "string"
     }
   },
   "additionalProperties": false,
-  "required": ["title", "description", "location", "price"]
+  "required": ["title", "description", "location", "price", "username"]
 }

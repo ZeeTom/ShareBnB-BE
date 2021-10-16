@@ -66,7 +66,7 @@ router.post("/", upload.single("image"), async function (req, res, next) {
   console.log(url, "url is");
   formData.image = url || null;
 
-  const newListing = await Listing.create(formData, "u1");
+  const newListing = await Listing.create(formData);
 
   return res.status(201).json({ newListing });
 });
