@@ -75,7 +75,7 @@ router.post("/", upload.single("image"), async function (req, res, next) {
  * - maxPrice
  * - location (will find case-insensitive, partial matches)
  *
- * Authorization required: logged in
+ * Authorization required: None
  */
 
 router.get("/", async function (req, res, next) {
@@ -98,10 +98,10 @@ router.get("/", async function (req, res, next) {
  *
  * Returns { id, title, description, location, price, username, image }
  *
- * Authorization required: logged in
+ * Authorization required: None
  */
 
-router.get("/:id", ensureLoggedIn, async function (req, res, next) {
+router.get("/:id", async function (req, res, next) {
   const listing = await Listing.get(req.params.id);
   return res.json({ listing });
 });
